@@ -16,7 +16,9 @@ const path = require("path");
 app.use(express.json());
 app.use(cors());
 const port = 8080;
-
+app.get("/", (req, res) => {
+  res.send("Welcome to Beat Drop");
+});
 app.use("/auth", authRoutes.router);
 app.use("/song", songRoutes.router);
 app.use("/playlist", playlistRoutes.router);
