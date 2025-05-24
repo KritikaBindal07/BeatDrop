@@ -1,16 +1,17 @@
 import { useState } from "react";
 import TextInput from "../componenets/shared/TextInput";
 import { makeAuthenticatedPOSTRequest } from "../utils/serviceHelpers";
+import CloudinaryUpload from "./../componenets/shared/CloudinaryUpload";
 
 const CreatePlaylistModal = ({ closeModal }) => {
   const [playlistName, setPlaylistName] = useState("");
-  const [playlistThumbnail, setPlaylistThumbnail] = useState("");
-
+  const [thumbnail, setThumbnail] = useState("");
+  const [thumbnailName, setThumbnailName] = useState("");
   const createPlaylist = async () => {
     try {
       const response = await makeAuthenticatedPOSTRequest("/playlist/create", {
         name: playlistName,
-        thumbnail: playlistThumbnail,
+        thumbnail: thumbnail,
         songs: [],
       });
 
@@ -54,13 +55,35 @@ const CreatePlaylistModal = ({ closeModal }) => {
             value={playlistName}
             setValue={setPlaylistName}
           />
-          <TextInput
+          {/* <TextInput
             label="Thumbnail"
             labelClassName={"text-white"}
             placeholder="Thumbnail"
             value={playlistThumbnail}
             setValue={setPlaylistThumbnail}
-          />
+          /> */}
+          <div className="mx-auto md:mx-0 ">
+            {thumbnail ? (
+              <div>
+                <img
+                  src={thumbnail}
+                  alt="thumbnail"
+                  className="w-full h-32 object-cover rounded-md mb-2"
+                />
+                <div className="text-white text-sm truncate">
+                  {thumbnailName}
+                </div>
+              </div>
+            ) : (
+              <CloudinaryUpload
+                setUrl={setThumbnail}
+                setName={setThumbnailName}
+                label="Upload Thumbnail"
+                resourceType="image"
+              />
+            )}
+          </div>
+
           <div
             className="bg-white w-full sm:w-1/2 rounded flex font-semibold justify-center items-center py-3 mt-4 cursor-pointer"
             onClick={createPlaylist}

@@ -31,7 +31,7 @@ const SongProvider = ({ children }) => {
     };
     getData();
   }, []);
-
+  console.log(songData)
   useEffect(() => {
     const fetchLikedSongs = async () => {
       try {

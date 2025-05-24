@@ -9,7 +9,7 @@ import React, {
 import { useCookies } from "react-cookie";
 import CreatePlaylistModal from "../modals/CreatePlaylistModal";
 import { Howl, Howler } from "howler";
-import spotify_logo from "../assets/images/spotify_logo_white.svg";
+import Beat_drop from "../assets/images/Beat_drop.png"
 import IconText from "../componenets/shared/Icontext";
 import { Icon } from "@iconify/react";
 import TextWithHover from "../componenets/shared/Textwithhover";
@@ -332,9 +332,8 @@ const LoggedInContainer = ({ children, currentActiveScreen, setIsLoading }) => {
       deleteCookie("token");
     }
   };
-  // const handleSidbar = () => {
-  //   setShow();
-  // };
+  
+  
 
   return (
     <div className="h-full w-full bg-app-black " onClick={closetoggleDropdown}>
@@ -376,7 +375,7 @@ const LoggedInContainer = ({ children, currentActiveScreen, setIsLoading }) => {
             <div className="logoDiv p-6">
               <Link to="/">
                 {" "}
-                <img src={spotify_logo} alt="spotify logo" width={125} />
+                <img src={Beat_drop} alt="beatdrop logo" width={125} />
               </Link>
             </div>
 

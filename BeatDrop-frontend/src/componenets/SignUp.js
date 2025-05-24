@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { makeUnauthenticatedPOSTRequest } from "../utils/serviceHelpers";
+import Beat_drop from "../assets/images/Beat_drop.png";
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [confirmEmail, setConfirmEmail] = useState("");
@@ -41,13 +42,34 @@ const SignUp = () => {
   };
   return (
     <div className="w-full h-full flex flex-col items-center overflow-x-hidden ">
-      <div className="logo p-5 border-b border-solid border-gray-300 w-full flex justify-center">
+      {/* <div className="logo p-5 border-b border-solid border-gray-300 w-full flex justify-center">
         <Icon icon="logos:spotify" width={150} />
+      </div> */}
+      <div className="logo bg-black p-2 border-b border-solid border-gray-300 w-full flex justify-center">
+        <img
+          src={Beat_drop}
+          alt="Beat Drop Logo"
+          className="h-16 object-contain"
+        />
       </div>
       <div className="inputRegion sm:w-1/3 py-10 sm:flex sm:items-center sm:justify-center sm:flex-col px-4 sm:px-0">
         <div className="font-bold mb-2 text-2xl">
           Sign Up for free to start Listening
         </div>
+        <TextInput
+          label="First Name"
+          placeholder="Enter your First Name"
+          className="my-1"
+          value={firstName}
+          setValue={setFirstName}
+        ></TextInput>
+        <TextInput
+          label="Last Name"
+          placeholder="Enter Your Last Name"
+          className="mt-3"
+          value={lastName}
+          setValue={setLastName}
+        />
         <TextInput
           label="Email address"
           placeholder="Enter your email"
@@ -75,26 +97,11 @@ const SignUp = () => {
           value={password}
           setValue={setPassword}
         ></PasswordInput>
-        <div className="w-full md:flex md:justify-between md:items-center md:space-x-8">
-          <TextInput
-            label="First Name"
-            placeholder="Enter your First Name"
-            className="my-6"
-            value={firstName}
-            setValue={setFirstName}
-          ></TextInput>
-          <TextInput
-            label="Last Name"
-            placeholder="Enter Your Last Name"
-            className="my-6"
-            value={lastName}
-            setValue={setLastName}
-          />
-        </div>
+        {/* <div className="w-full md:flex md:justify-between md:items-center md:space-x-8"></div> */}
 
         <div className=" w-full flex item-centre justify-center my-8">
           <button
-            className="bg-green-400 font-semibold p-3 px-10 rounded-full"
+            className="bg-black text-white font-semibold p-3 px-10 rounded-full"
             onClick={(e) => {
               e.preventDefault();
               signUpdata();

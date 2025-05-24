@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import spotify_logo from "../assets/images/spotify_logo_white.svg";
+
 import IconText from "./shared/Icontext";
 import { Icon } from "@iconify/react";
 import TextWithHover from "./shared/Textwithhover";
@@ -12,6 +12,7 @@ import LoggedInContainer from "../containers/LoggedInContainer";
 const UploadSong = () => {
   const [name, setName] = useState("");
   const [thumbnail, setThumbnail] = useState("");
+  const [thumbnailName, setThumbnailName] = useState("");
   const [description, setDescription] = useState("");
   const [playlistUrl, setPlaylistUrl] = useState("");
   const [uploadedSongFileName, setUploadedSongFileName] = useState();
@@ -51,7 +52,7 @@ const UploadSong = () => {
       duration: songDuration,
     };
     const response = await makeAuthenticatedPOSTRequest("/song/create", data);
-    console.log(response)
+    console.log(response);
     if (response.err) {
       alert("Could not create song");
       setName = "";
@@ -78,8 +79,8 @@ const UploadSong = () => {
         <div className="text-2xl font-semibold mb-5 text-white mt-8">
           Upload your Music
         </div>
-        <div className="w-full flex gap-4 justify-center flex-wrap">
-          <div className="w-1/3">
+        <div className="w-full flex gap-4 justify-center flex-wrap flex-col sm:flex-row">
+          <div className="w-full sm:w-1/3">
             {" "}
             <TextInput
               label="Name"
@@ -89,7 +90,7 @@ const UploadSong = () => {
               setValue={setName}
             ></TextInput>
           </div>
-          <div className="w-1/3">
+          {/* <div className="w-1/3">
             {" "}
             <TextInput
               label="Thumbnail"
@@ -98,8 +99,9 @@ const UploadSong = () => {
               value={thumbnail}
               setValue={setThumbnail}
             ></TextInput>
-          </div>
-          <div className="w-1/3">
+          </div> */}
+
+          <div className="w-full sm:w-1/3">
             <TextInput
               label="Description"
               labelClassName="text-white"
@@ -108,7 +110,7 @@ const UploadSong = () => {
               setValue={setDescription}
             ></TextInput>
           </div>
-          <div className="w-1/3">
+          {/* <div className="w-1/3">
             <TextInput
               label="Duration"
               labelClassName="text-white"
@@ -118,10 +120,10 @@ const UploadSong = () => {
               // disabled={true}
               readOnly
             ></TextInput>
-          </div>
+          </div> */}
         </div>
-        <div className="w-full flex justify-center py-7">
-          <div>
+        <div className="w-full flex flex-col justify-center gap-6 md:gap-12 py-7 md:flex-row">
+          <div className="mx-auto md:mx-0">
             {uploadedSongFileName ? (
               <div className="bg-white px-3 py-1 rounded-md">
                 {uploadedSongFileName.substring(0, 25)}...
@@ -130,10 +132,34 @@ const UploadSong = () => {
               <CloudinaryUpload
                 setUrl={setPlaylistUrl}
                 setName={setUploadedSongFileName}
+                label="Select Track"
               ></CloudinaryUpload>
             )}
           </div>
+
+          <div className="mx-auto md:mx-0 ">
+            {thumbnail ? (
+              <div>
+                <img
+                  src={thumbnail}
+                  alt="thumbnail"
+                  className="w-full h-32 object-cover rounded-md mb-2"
+                />
+                <div className="text-white text-sm truncate">
+                  {thumbnailName}
+                </div>
+              </div>
+            ) : (
+              <CloudinaryUpload
+                setUrl={setThumbnail}
+                setName={setThumbnailName}
+                label="Upload Thumbnail"
+                resourceType="image"
+              />
+            )}
+          </div>
         </div>
+
         <div className="w-full flex justify-center items-center">
           {" "}
           <div

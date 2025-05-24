@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import spotify_logo from "../assets/images/spotify_logo_white.svg";
+
 import { Howl, Howler } from "howler";
 import IconText from "./shared/Icontext";
 import { Icon } from "@iconify/react";

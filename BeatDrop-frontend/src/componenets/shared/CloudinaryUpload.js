@@ -1,7 +1,7 @@
 import { openUploadWidget } from "../../utils/CloudinaryService";
 import { cloudinary_upload_preset } from "../../config";
 
-const CloudinaryUpload = ({ setUrl, setName }) => {
+const CloudinaryUpload = ({ setUrl, setName, label = "Select File" }) => {
   const uploadImageWidget = () => {
     let myUploadWidget = openUploadWidget(
       {
@@ -25,10 +25,10 @@ const CloudinaryUpload = ({ setUrl, setName }) => {
 
   return (
     <button
-      className="bg-white text-black sm:rounded-full p-3 font-semibold"
+      className="bg-white text-black rounded-md p-3 font-semibold"
       onClick={uploadImageWidget}
     >
-      Select Track
+      {label}
     </button>
   );
 };

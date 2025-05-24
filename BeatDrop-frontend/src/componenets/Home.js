@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import spotify_logo from "../assets/images/spotify_logo_white.svg";
+// import Beat_drop from "../assets/images/Beat_drop_white.svg";
+import Beat_drop from "../assets/images/Beat_drop.png"
 import IconText from "./shared/Icontext";
 import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
@@ -39,7 +40,7 @@ const focusCardsData = [
   },
 ];
 
-const spotifyPlaylistsCardData = [
+const PlaylistsCardData = [
   {
     title: "This is one",
     description: "Relax and indulge with beautiful piano pieces",
@@ -80,7 +81,7 @@ const Home = () => {
       <div className="h-full hidden md:w-1/5 bg-black md:flex md:flex-col md:justify-between pb-10 ">
         <div>
           <div className="logoDiv p-6">
-            <img src={spotify_logo} alt="spotify logo" width={125} />
+            <img src={Beat_drop} alt=" logo" width={125} />
           </div>
           <div className="py-5">
             <IconText
@@ -124,8 +125,8 @@ const Home = () => {
         <div className="content p-8 pt-0 overflow-auto">
           <PlaylistView titleText="Focus" cardsData={focusCardsData} />
           <PlaylistView
-            titleText="Spotify Playlists"
-            cardsData={spotifyPlaylistsCardData}
+            titleText="Beat Drop Playlists"
+            cardsData={PlaylistsCardData}
           />
           <PlaylistView titleText="Sound of India" cardsData={focusCardsData} />
         </div>

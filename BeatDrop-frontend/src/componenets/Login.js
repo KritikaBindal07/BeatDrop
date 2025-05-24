@@ -3,7 +3,7 @@ import { useState, useContext } from "react";
 import { Icon } from "@iconify/react";
 import TextInput from "./shared/TextInput";
 import PasswordInput from "./shared/PasswordInput";
-
+import Beat_drop from "../assets/images/Beat_drop.png"
 import { Link, useNavigate } from "react-router-dom";
 import { makeUnauthenticatedPOSTRequest } from "../utils/serviceHelpers";
 import { useCookies } from "react-cookie";
@@ -32,8 +32,12 @@ const Login = () => {
 
   return (
     <div className="w-full h-full flex flex-col items-center overflow-x-hidden ">
-      <div className="logo py-5 border-b border-solid border-gray-300 w-full flex justify-center">
-        <Icon icon="logos:spotify" width={150} />
+      <div className="logo bg-black p-2 border-b border-solid border-gray-300 w-full flex justify-center">
+        <img
+          src={Beat_drop}
+          alt="Beat Drop Logo"
+          className="h-16 object-contain"
+        />
       </div>
       <div className="sm:w-1/3 py-10 sm:flex sm:flex-col sm:items-center sm:justify-center px-4 sm:px-0">
         <div className="font-bold mb-2">To continue,log in to Beat Drop</div>
@@ -52,7 +56,7 @@ const Login = () => {
         ></PasswordInput>
         <div className=" w-full flex item-centre justify-end my-8">
           <button
-            className="bg-green-400 font-semibold p-3 px-10 rounded-full"
+            className="bg-black text-white font-semibold p-3 px-10 rounded-full"
             onClick={(e) => {
               e.preventDefault();
               Logindata();

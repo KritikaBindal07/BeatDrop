@@ -14,8 +14,25 @@ const LoggedInHome = () => {
     songData,
     setSongData,
     isSongDataLoading,
+    setIsSongDataLoading,
   } = useContext(useSongContext);
   // const [isLoading, setIsLoading] = useState(true);
+
+  // useEffect(() => {
+  //   const fetchSongs = async () => {
+  //     setIsSongDataLoading(true);
+  //     try {
+  //       const response = await makeAuthenticatedGETRequest("/song/get/mysongs");
+  //       setSongData(response.data);
+  //     } catch (error) {
+  //       console.error("Failed to fetch songs:", error);
+  //     } finally {
+  //       setIsSongDataLoading(false);
+  //     }
+  //   };
+
+  //   fetchSongs();
+  // }, []);
 
   return (
     <LoggedInContainer currentActiveScreen={"home"}>
@@ -24,18 +41,24 @@ const LoggedInHome = () => {
           <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-white"></div>
         </div>
       ) : (
-        <PlaylistView titleText="Focus" songData={songData} />
+        songData && <PlaylistView titleText="Focus" songData={songData} />
       )}
     </LoggedInContainer>
   );
 };
 
 const PlaylistView = ({ titleText, songData }) => {
+  const getRandomSongs = (songs, count = 8) => {
+    const shuffled = [...songs].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count);
+  };
+
+  const songsToShow = getRandomSongs(songData);
   return (
     <>
       <div className="text-white text-xl py-8 font-semibold">{titleText}</div>
       <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-        {songData.map((item) => {
+        {songsToShow.map((item) => {
           return (
             <Card
               key={item._id}
