@@ -3,9 +3,11 @@ import { makeAuthenticatedGETRequest } from "../utils/serviceHelpers";
 
 const AddToPlaylistModal = ({ closeModal, addSongToPlaylist }) => {
   const [myPlaylists, setMyPlaylists] = useState([]);
+  const apiBaseUrl = process.env.REACT_APP_BASE_URL || "http://localhost:8080";
+
   useEffect(() => {
     const getData = async () => {
-      const response = await makeAuthenticatedGETRequest("/playlist/get/me");
+      const response = await makeAuthenticatedGETRequest(`${apiBaseUrl}/playlist/get/me`);
       setMyPlaylists(response.data);
     };
     getData();

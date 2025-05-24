@@ -8,11 +8,12 @@ const Search = () => {
   const [isInputFocused, setIsInputFocused] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [songData, setSongData] = useState([]);
+  const apiBaseUrl = process.env.REACT_APP_BASE_URL || "http://localhost:8080";
 
   const searchSong = async () => {
     // This function will call the search api
     const response = await makeAuthenticatedGETRequest(
-      "/song/get/songname/" + searchText
+      `${apiBaseUrl}/song/get/songname/` + searchText
     );
     setSongData(response.data);
   };

@@ -17,6 +17,7 @@ const SignUp = () => {
   const [lastName, setLastName] = useState("");
   const [cookie, setCookie] = useCookies(["token"]);
   const navigate = useNavigate();
+  const apiBaseUrl = process.env.REACT_APP_BASE_URL || "http://localhost:8080";
 
   const signUpdata = async () => {
     if (email !== confirmEmail) {
@@ -25,7 +26,7 @@ const SignUp = () => {
     }
     const data = { email, password, username, firstName, lastName };
     const response = await makeUnauthenticatedPOSTRequest(
-      "/auth/register",
+      `${apiBaseUrl}/auth/register`,
       data
     );
     if (response && !response.err) {

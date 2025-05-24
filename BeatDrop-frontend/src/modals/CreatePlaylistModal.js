@@ -7,9 +7,11 @@ const CreatePlaylistModal = ({ closeModal }) => {
   const [playlistName, setPlaylistName] = useState("");
   const [thumbnail, setThumbnail] = useState("");
   const [thumbnailName, setThumbnailName] = useState("");
+  const apiBaseUrl = process.env.REACT_APP_BASE_URL || "http://localhost:8080";
+
   const createPlaylist = async () => {
     try {
-      const response = await makeAuthenticatedPOSTRequest("/playlist/create", {
+      const response = await makeAuthenticatedPOSTRequest(`${apiBaseUrl}/playlist/create`, {
         name: playlistName,
         thumbnail: thumbnail,
         songs: [],
