@@ -1,4 +1,5 @@
-# 🎧 BeatDrop – Music Streaming Web App    Visit https://beatdrop-frontend.vercel.app/
+# 🎧 BeatDrop – Music Streaming Web App
+Visit https://beatdrop-frontend.vercel.app/
 
 BeatDrop is a full-stack music streaming web application that lets users play, like, and manage songs and playlists with a clean and responsive UI.
 
