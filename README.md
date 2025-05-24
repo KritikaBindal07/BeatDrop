@@ -27,5 +27,5 @@ BeatDrop is a full-stack music streaming web application that lets users play, l
 - **Cloudinary** for file uploads
 - **JWT Authentication**
 
-## 📦 Folder Structure
+
 
