@@ -4,12 +4,12 @@ import LoggedInContainer from "../containers/LoggedInContainer";
 import { useNavigate } from "react-router-dom";
 
 const Allplaylist = () => {
-  const apiBaseUrl = process.env.REACT_APP_BASE_URL || "http://localhost:8080";
+  
   const [playlist, setPlaylist] = useState([]);
   useEffect(() => {
     const getData = async () => {
       const response = await makeAuthenticatedGETRequest(
-        `${apiBaseUrl}/playlist/allplaylists`
+        "/playlist/allplaylists"
       );
 
       setPlaylist(response.data);

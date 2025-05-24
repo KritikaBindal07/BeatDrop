@@ -12,12 +12,11 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [cookies, setCookie] = useCookies(["token"]);
-  const apiBaseUrl = process.env.REACT_APP_BASE_URL || "http://localhost:8080";
 
   const navigate = useNavigate();
   const Logindata = async () => {
     const data = { email, password };
-    const response = await makeUnauthenticatedPOSTRequest(`${apiBaseUrl}/auth/login`, data);
+    const response = await makeUnauthenticatedPOSTRequest("/auth/login", data);
 
     if (response && !response.err) {
       const token = response.token;

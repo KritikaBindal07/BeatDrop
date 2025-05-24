@@ -37,7 +37,6 @@ const LoggedInContainer = ({ children, currentActiveScreen, setIsLoading }) => {
   const [show, setShow] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const apiBaseUrl = process.env.REACT_APP_BASE_URL || "http://localhost:8080";
 
   useEffect(() => {
     const handleResize = () => {
@@ -231,7 +230,7 @@ const LoggedInContainer = ({ children, currentActiveScreen, setIsLoading }) => {
 
     const payload = { playlistId, songId };
     const response = await makeAuthenticatedPOSTRequest(
-      `${apiBaseUrl}/playlist/add/song`,
+      "/playlist/add/song",
       payload
     );
     if (response._id) {
@@ -246,7 +245,7 @@ const LoggedInContainer = ({ children, currentActiveScreen, setIsLoading }) => {
     const getData = async () => {
       try {
         const response = await makeAuthenticatedGETRequest(
-          `${apiBaseUrl}/auth/current-artist`
+          "/auth/current-artist"
         );
         console.log("Response from /auth/current-artist:", response.data);
         setUserInfo(response.data);
@@ -272,7 +271,7 @@ const LoggedInContainer = ({ children, currentActiveScreen, setIsLoading }) => {
       if (isCurrentSongLiked) {
         // Unlike the song
         const response = await makeAuthenticatedPOSTRequest(
-          `${apiBaseUrl}/likedsongs/unlike`,
+          "/likedsongs/unlike",
           payload
         );
 
@@ -328,12 +327,22 @@ const LoggedInContainer = ({ children, currentActiveScreen, setIsLoading }) => {
     document.cookie = `${cookieName}=; expires=${date.toUTCString()}; path=/;`;
   }
   const logoutHandler = async () => {
-    const response = await makeAuthenticatedPOSTRequest(`${apiBaseUrl}/auth/logout`);
+    const response = await makeAuthenticatedPOSTRequest("/auth/logout");
     if (response && !response.err) {
       deleteCookie("token");
     }
   };
+  // const handleSidbar = () => {
+  //   setShow();
+  // };
+
+  // if (isSongDataLoading) {
+  //   return <div>Loading songs...</div>; 
+  // }
   
+  // if (!songData || songData.length === 0) {
+  //   return <div>No songs available</div>; // fallback
+  // }
   
 
   return (
@@ -373,10 +382,10 @@ const LoggedInContainer = ({ children, currentActiveScreen, setIsLoading }) => {
                 ) : null
               ) : null}
             </div>
-            <div className="logoDiv p-6">
+            <div className="logoDiv p-6 pt-0 h-28">
               <Link to="/">
                 {" "}
-                <img src={Beat_drop} alt="beatdrop logo" width={125} />
+                <img className="h-[100%]" src={Beat_drop} alt="beatdrop logo" width={125} />
               </Link>
             </div>
 

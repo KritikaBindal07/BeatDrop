@@ -16,6 +16,7 @@ const LikedSong = () => {
     isLikedSongDataLoading,
     // isLikedLoading,
   } = useContext(useSongContext);
+  console.log(likedSongs)
 
   return (
     <LoggedInContainer currentActiveScreen={"likedsongs"}>

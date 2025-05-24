@@ -13,15 +13,14 @@ const SongProvider = ({ children }) => {
   const [songData, setSongData] = useState([]);
   const [isSongDataLoading, setIsSongDataLoading] = useState(true);
   const [isLikedSongDataLoading, setIsLikedSongDataLoading] = useState(true);
-  const apiBaseUrl = process.env.REACT_APP_BASE_URL || "http://localhost:8080";
-
+  const apiBaseUrl = process.env.REACT_APP_BASE_URL;
   //
   useEffect(() => {
     const getData = async () => {
       try {
         setIsSongDataLoading(true);
         const response = await makeAuthenticatedGETRequest(
-          `${apiBaseUrl}/song/get/allsongs`
+          "/song/get/allsongs"
         );
         setSongData(response.data);
         setIsSongDataLoading(false);
@@ -56,6 +55,7 @@ const SongProvider = ({ children }) => {
 
     fetchLikedSongs();
   }, [userinfo]);
+  console.log(likedSongs)
 
   useEffect(() => {
     const isLiked =

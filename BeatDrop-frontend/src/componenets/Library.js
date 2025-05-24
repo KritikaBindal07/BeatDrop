@@ -6,11 +6,11 @@ import { makeAuthenticatedGETRequest } from "../utils/serviceHelpers";
 const Library = () => {
   const [myPlaylists, setMyPlaylists] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const apiBaseUrl = process.env.REACT_APP_BASE_URL || "http://localhost:8080";
+
   useEffect(() => {
     const getData = async () => {
       setIsLoading(true);
-      const response = await makeAuthenticatedGETRequest( `${apiBaseUrl}/playlist/get/me`);
+      const response = await makeAuthenticatedGETRequest("/playlist/get/me");
       setMyPlaylists(response.data);
       setIsLoading(false);
     };

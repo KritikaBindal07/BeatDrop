@@ -19,7 +19,6 @@ const UploadSong = () => {
 
   const [songDuration, setSongDuration] = useState("");
   const navigate = useNavigate();
-  const apiBaseUrl = process.env.REACT_APP_BASE_URL || "http://localhost:8080";
 
   useEffect(() => {
     const calculateDuration = async () => {
@@ -52,7 +51,7 @@ const UploadSong = () => {
       description,
       duration: songDuration,
     };
-    const response = await makeAuthenticatedPOSTRequest(`${apiBaseUrl}/song/create`, data);
+    const response = await makeAuthenticatedPOSTRequest("/song/create", data);
     console.log(response);
     if (response.err) {
       alert("Could not create song");

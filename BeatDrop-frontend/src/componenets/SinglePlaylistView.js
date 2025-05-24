@@ -7,12 +7,11 @@ import SingleSongCard from "./shared/SingleSongCard";
 const SinglePlaylistView = () => {
   const [playlistDetails, setPlaylistDetails] = useState({});
   const { playlistId } = useParams();
-  const apiBaseUrl = process.env.REACT_APP_BASE_URL || "http://localhost:8080";
 
   useEffect(() => {
     const getData = async () => {
       const response = await makeAuthenticatedGETRequest(
-        `${apiBaseUrl}/playlist/get/playlist/` + playlistId
+        "/playlist/get/playlist/" + playlistId
       );
       setPlaylistDetails(response);
     
